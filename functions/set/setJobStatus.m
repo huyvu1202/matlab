@@ -1,4 +1,4 @@
 function setJobStatus(jobID,status)
 global job;
-job(jobID,4) = status;
+job(jobID,5) = status;
 end

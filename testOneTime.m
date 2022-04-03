@@ -7,16 +7,15 @@ addpath(genpath('dijktra'));
 addpath(genpath('dispatching'));
 addpath(genpath('functions'));
 addpath(genpath('helper'));
-run('variable_map1.m');
+run('testOneTime_var.m');
 global job shuttle_info numOfShuttle job_fix;
 pause(1);
 
 %Dispatching---------------------------------------------------------------------%
 
-% checkJobAvailable();
 
 %Setting-------------------------------------------------------------------------%
-numofjob = 10;
+numofjob = 20;
 numOfShuttle = 5;
 
 step = 0;
@@ -29,9 +28,9 @@ for num=1:numOfShuttle
 end
 while 1
     %Draw start----------------------------------------------------------------------%
-    drawMap(shuttle_info);
-    printShutle(shuttle_info);
-    if getDoneJob(job)
+%     drawMap(shuttle_info);
+%     printShutle(shuttle_info);
+    if getAllDoneJob(job)
         break;    end
     checkJobAvailable();
     ReRouting();

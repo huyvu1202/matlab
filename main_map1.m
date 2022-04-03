@@ -13,10 +13,9 @@ pause(1);
 
 %Dispatching---------------------------------------------------------------------%
 
-% checkJobAvailable();
 
 %Setting-------------------------------------------------------------------------%
-numofjob = 10;
+numofjob = 1000;
 totalCase = 5;
 t=1:totalCase;
 result = zeros(1,totalCase);
@@ -34,7 +33,7 @@ for numOfShuttle=1:totalCase
         %Draw start----------------------------------------------------------------------%
         %     drawMap(shuttle_info);
         %     printShutle(shuttle_info);
-        if getDoneJob(job)
+        if getAllDoneJob(job)
             break;    end
         checkJobAvailable();
         ReRouting();

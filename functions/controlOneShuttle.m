@@ -6,7 +6,6 @@ target = getTargetPos(shuttleID);
 
 if strcmp(stt, 'idle')
     if (current == target)
-        % checkJobAvailable();
         shuttle_info(shuttleID,5) = 0;
     else
         moveToTarget(shuttleID);
@@ -16,10 +15,11 @@ elseif strcmp(stt, 'retrieved')
         if(shuttle_info(shuttleID,5) == timeLoad)
             setStatusShuttle(shuttleID, 'delivery');
             job_id = shuttle_info(shuttleID, 6);
-            job(job_id,5) = 1;
+            setJobStatus(job_id,1)
             
-            jobID = getJobOfShuttle(shuttleID);
-            setTargetForShuttle(shuttleID, jobID);
+            jobId = getAssignedJobOnShuttle(shuttleID);
+            targetJob = getUnloadingPos(jobId);
+            setTargetForShuttle(shuttleID, targetJob);
             %fprintf("Shuttle %d: job %d loaded \n", shuttleID, jobID);
             shuttle_info(shuttleID,5) = 0;
 
@@ -39,7 +39,6 @@ elseif strcmp(stt, 'delivery')
             setStatusShuttle(shuttleID, 'idle');
             setJobDone(shuttleID);
             shuttle_info(shuttleID,5) = 0;
-            % checkJobAvailable();
             %Draft
             shuttle_info(shuttleID, 8) = shuttle_info(shuttleID, 8) + 1;
         else
