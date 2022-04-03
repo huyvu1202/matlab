@@ -1,7 +1,7 @@
 %-------------------------------------------------------------------------%
 clear;
 clc;
-global layout A x y color job_fix shuttle_info station numOfShuttle pathOfShuttle name numofjob;
+global layout A x y color job_fix shuttle_info station numOfShuttle pathOfShuttle name numofjob job;
 global timeUnload timeLoad timeSwitcher;
 timeUnload = 0;
 timeLoad = 0;
@@ -81,28 +81,19 @@ for i=1:numofjob
         end
     end
 end
-
+job = job_fix;
 %stt %status %cur_pos %tar_get %wait_time %current_job %block?
 
 %1: idle
 %2: notFree
-% shuttle_info = [
-%     1 1 1 0 0 0 0;
-%     2 1 2 0 0 0 0;
-%     3 1 3 0 0 0 0;
-%     4 1 4 0 0 0 0;
-%     5 1 5 0 0 0 0;
-%     6 1 6 0 0 0 0;
-%     7 1 7 0 0 0 0;
-%     8 1 8 0 0 0 0;
-%     9 1 9 0 0 0 0;
-%     10 1 10 0 0 0 0;
-% %     11 1 11 0 0 0 0;
-% %     12 1 12 0 0 0 0;
-%     ];
-% numOfShuttle = size(shuttle_info,1);
-
-
+shuttle_info = [
+    1 1 1 0 0 0 0 0;
+    2 1 2 0 0 0 0 0;
+    3 1 3 0 0 0 0 0;
+    4 1 4 0 0 0 0 0;
+    5 1 5 0 0 0 0 0;
+    ];
+numOfShuttle = size(shuttle_info,1);
 %-------------------------------------------------------------------------%
 pathOfShuttle={};
 

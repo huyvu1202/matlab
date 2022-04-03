@@ -1,6 +1,6 @@
 function [e L] = dijkstra(A,s,d)
-e = 0;
 L = shortestpath(digraph(A),s,d);
+e = size(L,2);
 return
 if s==d
     e=0;
