@@ -8,15 +8,16 @@ addpath(genpath('dispatching'));
 addpath(genpath('functions'));
 addpath(genpath('helper'));
 run('variable_map1.m');
-global job shuttle_info numOfShuttle job_fix;
+global job shuttle_info numOfShuttle job_fix numofjob;
 pause(1);
 
 %Dispatching---------------------------------------------------------------------%
 
 % checkJobAvailable();
 
-%Routing-------------------------------------------------------------------------%
-totalCase = 10;
+%Setting-------------------------------------------------------------------------%
+numofjob = 10;
+totalCase = 5;
 t=1:totalCase;
 result = zeros(1,totalCase);
 totalOfShuttle = zeros(1,totalCase);

@@ -1,6 +1,5 @@
 function [next] = getNextPos(shuttleID)
-global pathOfShuttle;
-path = pathOfShuttle{shuttleID};
+path = getPath(shuttleID);
 if path ~= 0
     step = 0;
     for step=1:size(path,2)

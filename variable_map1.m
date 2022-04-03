@@ -1,7 +1,7 @@
 %-------------------------------------------------------------------------%
 clear;
 clc;
-global layout A x y color job_fix shuttle_info station numOfShuttle pathOfShuttle name;
+global layout A x y color job_fix shuttle_info station numOfShuttle pathOfShuttle name numofjob;
 global timeUnload timeLoad timeSwitcher;
 timeUnload = 0;
 timeLoad = 0;
@@ -69,7 +69,6 @@ name = ["v1", "v2","v3","v4","v5"];
 % jobid _loadstation _target _stt                   stt_2
 %                            0: not push            0: on station
 %                            1: done 2:pushed       1: delivery
-numofjob = 100;
 job_fix = zeros(numofjob,5);
 for i=1:numofjob
     job_fix(i,1)=i;
