@@ -10,7 +10,7 @@ for i = 1:numOfShuttle
         
         if shuttle_id_block~=0 && strcmp(getStatusShuttle(shuttle_id_block),'idle') 
             newtarget = getTargetPos(i) + 1;
-            if newtarget > numOfNode 
+            if newtarget > 18
                 newtarget = 1;
             end
             setTargetForShuttle(shuttle_id_block, newtarget);

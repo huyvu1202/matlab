@@ -1,7 +1,7 @@
 function [stt]=getStatusShuttle(shuttleID)
 global shuttle_info;
-stt = shuttle_info(shuttleID,2);
-    switch stt
+abc = shuttle_info(shuttleID,2);
+    switch abc
         case 1
             stt = 'idle';
         case 2

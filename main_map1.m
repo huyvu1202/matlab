@@ -15,8 +15,8 @@ pause(1);
 
 
 %Setting-------------------------------------------------------------------------%
-numofjob = 1000;
-totalCase = 5;
+numofjob = 100;
+totalCase = 10;
 t=1:totalCase;
 result = zeros(1,totalCase);
 totalOfShuttle = zeros(1,totalCase);

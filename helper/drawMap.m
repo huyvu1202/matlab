@@ -27,7 +27,6 @@ for i=1:size(job,1)
     end
 end
 
-
 L = line(ones(3), ones(3));
 set(L(1), 'Color', color(1))
 set(L(2), 'Color', color(2))

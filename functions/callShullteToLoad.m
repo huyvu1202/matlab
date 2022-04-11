@@ -15,6 +15,7 @@ if num ~= 0
     setTargetForShuttle(shuttleID, loadStation);
     setJobForShuttle(shuttleID, jobID);
     setStatusShuttle(shuttleID, 'retrieved');
+    
     %fprintf("Job %d -> shuttle %d \n",jobID,shuttleID);
 else
     %fprintf("no shullte free\n");
