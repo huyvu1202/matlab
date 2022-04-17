@@ -1,4 +1,5 @@
 close all; clear all; path(pathdef); clc;
+global job shuttle_info numOfShuttle job_fix numofjob;
 addpath dijktra;
 addpath dispatching;
 addpath functions;
@@ -7,17 +8,16 @@ addpath(genpath('dijktra'));
 addpath(genpath('dispatching'));
 addpath(genpath('functions'));
 addpath(genpath('helper'));
-global job shuttle_info numOfShuttle job_fix numofjob;
-loop = 10;
+loop_step = 2;
 tt_result = [];
 tt_totalOfShuttle = [];
-for i=1:loop    
+for i=1:loop_step
     numofjob = 100;
     run('testOneTime_var.m');
-    
-    %Dispatching---------------------------------------------------------------------%   
+    syncData();
+    %Dispatching---------------------------------------------------------------------%
     %Setting-------------------------------------------------------------------------%
-    totalCase = 15;
+    totalCase = 10;
     t=1:totalCase;
     result = zeros(1,totalCase);
     totalOfShuttle = zeros(1,totalCase);
@@ -31,7 +31,8 @@ for i=1:loop
             shuttle_info(num,3)=num;
             shuttle_info(num,4)=num;
         end
-%         drawMap(shuttle_info);
+        syncData();
+        %         drawMap(shuttle_info);
         HABOR();
         pause(1);
         while 1

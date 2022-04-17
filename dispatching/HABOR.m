@@ -44,4 +44,5 @@ else
         setTargetForShuttle(shutle_ID, loadStation);
     end
 end
+handleDeadlock();
 end
