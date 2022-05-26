@@ -14,7 +14,7 @@ for i=1:numOfShuttle
         rectangle('Position',[x(j)-W/2,y(j)-H/2,W,H],'FaceColor',color(shuttle(i,2))); % Draw shuttle
         text(x(j),y(j)+2,name(i)); % Draw text  
     end
-    if job_id ~=0 && job(job_id,5)==1 && job(i,4) ~= 1
+    if job_id ~=0 && job(job_id,5)==1 && job(job_id,4) ~= 1
         rectangle('Position',[x(j),y(j),1,1],'Curvature',[1 1],'FaceColor','black');
     end
 end

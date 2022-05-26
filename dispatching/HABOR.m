@@ -19,16 +19,20 @@ if numJob >= numShuttle
         job_ID = listJob(i);
 
         setJobForShuttle(shutle_ID , job_ID);
-%         fprintf("job %d for shuttle %d\n", job_ID,shutle_ID);
-        setStatusShuttle(listShuttle(i), 'retrieved');
+        % fprintf("job %d -> shuttle %d\n", job_ID,shutle_ID);
+        setStatusShuttle(shutle_ID, 'retrieved');
         loadStation = getLoadingPos(job_ID);
         setTargetForShuttle(shutle_ID, loadStation);
     end
 else
-    listShuttle = listShuttle(1:numJob);
-    numShuttle = numJob;
+    % -----------------------------
+    for dump = numJob+1:numShuttle
+        listJob(dump) = -1;
+    end
+    numJob_dump = numShuttle;
+    %------------------------------
     costMat = zeros(numShuttle,numShuttle);
-    for jo=1:numJob
+    for jo=1:numJob_dump
         for sh=1:numShuttle
             costMat(jo,sh)= caculateCostIndex(listShuttle(sh),listJob(jo));
         end
@@ -38,8 +42,8 @@ else
         shutle_ID = listShuttle(assignment(i));
         job_ID = listJob(i);
         setJobForShuttle(shutle_ID , job_ID);
-%         fprintf("job %d for shuttle %d\n", job_ID,shutle_ID);
-        setStatusShuttle(listShuttle(i), 'retrieved');
+        %fprintf("job %d -> shuttle %d\n", job_ID,shutle_ID);
+        setStatusShuttle(shutle_ID, 'retrieved');
         loadStation = getLoadingPos(job_ID);
         setTargetForShuttle(shutle_ID, loadStation);
     end

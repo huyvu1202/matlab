@@ -8,12 +8,11 @@ addpath(genpath('dijktra'));
 addpath(genpath('dispatching'));
 addpath(genpath('functions'));
 addpath(genpath('helper'));
-loop_step = 2;
+loop_step = 1;
 tt_result = [];
 tt_totalOfShuttle = [];
 for i=1:loop_step
-    numofjob = 100;
-    run('testOneTime_var.m');
+    run('testOneTime_var1.m');
     syncData();
     %Dispatching---------------------------------------------------------------------%
     %Setting-------------------------------------------------------------------------%
@@ -56,7 +55,10 @@ for i=1:loop_step
 end
 fprintf('End');
 figure;
-plot(t,tt_result',t, tt_totalOfShuttle');
+p = plot(t,tt_result',t, tt_totalOfShuttle');
+p(1).LineWidth = 2;
+p(2).LineWidth = 2;
+legend('Total Time','Total distance')
 xlabel('Number of Shuttle');
-ylabel('Total Step');
+ylabel('Step');
 grid on;

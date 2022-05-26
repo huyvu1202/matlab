@@ -1,6 +1,6 @@
 function handleDeadlock()
 %loop bao gom station_id
-global loop station timeLoad;
+global loop station timeLoad shuttle_info;
 listShuttleOnPath = [];
 for i=1:size(loop,1)
     for node = 1:size(loop{i},2)
@@ -32,7 +32,8 @@ for s=1:size(listShuttleOnPath,2)
             for front_shuttle_index = 1:size(front_shuttle_id_list,2)
                 
                 front_shuttle_id = front_shuttle_id_list(front_shuttle_index);
-                
+                job_behind_shuttle_id = getAssignedJobOnShuttle(behind_shuttle_id);
+                job_behind_pos = getLoadingPos(job_behind_shuttle_id);
                 if strcmp(getStatusShuttle(front_shuttle_id),'retrieved')
                     job_front_shuttle_id = getAssignedJobOnShuttle(front_shuttle_id);
                     job_front_pos = getLoadingPos(job_front_shuttle_id);
@@ -63,9 +64,13 @@ for s=1:size(listShuttleOnPath,2)
                     
                     % swap
                     setJobForShuttle(behind_shuttle_id, job_front_shuttle_id);
-                    %                         fprintf("%d -> %d\n", job_front_shuttle_id, behind_shuttle_id);
+                    setTargetForShuttle(behind_shuttle_id, job_front_pos);
+
+                    % fprintf("%d -> %d\n", job_front_shuttle_id, behind_shuttle_id);
                     setJobForShuttle(front_shuttle_id, job_behind_shuttle_id);
-                    %                         fprintf("%d -> %d\n", job_behind_shuttle_id, front_shuttle_id);
+                    setTargetForShuttle(front_shuttle_id, job_behind_pos);
+
+                    % fprintf("%d -> %d\n", job_behind_shuttle_id, front_shuttle_id);
                 end
             end
         end

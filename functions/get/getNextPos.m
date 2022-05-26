@@ -14,6 +14,8 @@ if path ~= 0
         next = path(1,end);
     end
 else
+    curPos = getCurrentPos(shuttleID);
+    next = curPos;
     %fprintf("path null\n");
 end
 end
