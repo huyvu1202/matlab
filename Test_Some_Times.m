@@ -12,7 +12,7 @@ loop_step = 1;
 tt_result = [];
 tt_totalOfShuttle = [];
 for i=1:loop_step
-    run('testOneTime_var1.m');
+    run('testOneTime_var.m');
     syncData();
     %Dispatching---------------------------------------------------------------------%
     %Setting-------------------------------------------------------------------------%

@@ -66,11 +66,11 @@ for s=1:size(listShuttleOnPath,2)
                     setJobForShuttle(behind_shuttle_id, job_front_shuttle_id);
                     setTargetForShuttle(behind_shuttle_id, job_front_pos);
 
-                    % fprintf("%d -> %d\n", job_front_shuttle_id, behind_shuttle_id);
+%                     fprintf("Swap %d -> %d\n", job_front_shuttle_id, behind_shuttle_id);
                     setJobForShuttle(front_shuttle_id, job_behind_shuttle_id);
                     setTargetForShuttle(front_shuttle_id, job_behind_pos);
 
-                    % fprintf("%d -> %d\n", job_behind_shuttle_id, front_shuttle_id);
+%                     fprintf("Swap %d -> %d\n", job_behind_shuttle_id, front_shuttle_id);
                 end
             end
         end

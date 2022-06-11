@@ -4,22 +4,40 @@ function HABOR()
 if numJob == 0 || numShuttle == 0
     return
 end
+
+% reset status
+for sh=1:numShuttle
+    shutle_ID = listShuttle(sh);
+    setStatusShuttle(shutle_ID, 'idle');
+    current = getCurrentPos(shutle_ID);
+    setTargetForShuttle(shutle_ID, current);
+    setJobForShuttle(shutle_ID , 0);
+end
+
 if numJob >= numShuttle
-    listJob = listJob(1:numShuttle);
-    numJob = numShuttle;
-    costMat = zeros(numShuttle,numShuttle);
+    % For dummy
+    % -----------------------------
+    for dump = numShuttle+1:numJob
+        listShuttle(dump) = -1;
+    end
+    numShuttle_dump = numJob;
+    %------------------------------
+    costMat = zeros(numShuttle_dump,numShuttle_dump);
     for jo=1:numJob
-        for sh=1:numShuttle
+        for sh=1:numShuttle_dump
             costMat(jo,sh)= caculateCostIndex(listShuttle(sh),listJob(jo));
         end
     end
+    %
     [assignment,~] = Hungarian(costMat);
     for i=1:numJob
         shutle_ID = listShuttle(assignment(i));
-        job_ID = listJob(i);
-
+        job_ID = listJob((i));
+        if shutle_ID == -1 || job_ID == -1
+            continue;
+        end
         setJobForShuttle(shutle_ID , job_ID);
-        % fprintf("job %d -> shuttle %d\n", job_ID,shutle_ID);
+        %         fprintf("job %d -> shuttle %d\n", job_ID,shutle_ID);
         setStatusShuttle(shutle_ID, 'retrieved');
         loadStation = getLoadingPos(job_ID);
         setTargetForShuttle(shutle_ID, loadStation);
@@ -38,11 +56,14 @@ else
         end
     end
     [assignment,~] = Hungarian(costMat);
-    for i=1:numJob
+    for i=1:numShuttle
         shutle_ID = listShuttle(assignment(i));
-        job_ID = listJob(i);
+        job_ID = listJob((i));
+        if shutle_ID == -1 || job_ID == -1
+            continue;
+        end
         setJobForShuttle(shutle_ID , job_ID);
-        %fprintf("job %d -> shuttle %d\n", job_ID,shutle_ID);
+%         fprintf("job %d -> shuttle %d\n", job_ID,shutle_ID);
         setStatusShuttle(shutle_ID, 'retrieved');
         loadStation = getLoadingPos(job_ID);
         setTargetForShuttle(shutle_ID, loadStation);

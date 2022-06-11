@@ -1,7 +1,7 @@
 function drawMap(shuttle)
 global layout A x y name color numOfShuttle job;
-
 h=plot(A,'XData',x,'YData',y,'LineWidth',2,'EdgeColor','k');
+
 labelnode(h,1:70,'')
 text(x(2)-0.5,y(2)+1,'S1');
 text(x(10)-0.5,y(10)+1,'S2');
@@ -14,14 +14,14 @@ text(x(31)-0.5,y(31)-1,'S8');
 highlight(h,[2 10 18 26 55 47 39 31],'NodeColor','r')
 axis equal;
 hold on;
-W=1;
+W=2;
 H=1;
 for i=1:numOfShuttle
     j = shuttle(i,3);
     job_id = shuttle(i, 6);
     if j <= size(layout,1)
         rectangle('Position',[x(j)-W/2,y(j)-H/2,W,H],'FaceColor',color(shuttle(i,2))); % Draw shuttle
-        text(x(j)-0.5,y(j)+1,name(i)); % Draw text  
+        text(x(j)-0.5,y(j)-0.15,name(i)); % Draw text  
     end
     if job_id ~=0 && job(job_id,5)==1 && job(job_id,4) ~= 1
         rectangle('Position',[x(j),y(j),1,1],'Curvature',[1 1],'FaceColor','black');
@@ -42,6 +42,8 @@ set(L(2), 'Color', color(2))
 set(L(3), 'Color', color(3))
 legend(L, {'Idle','Retrieved','Delivery'})
 set(L(:), 'LineWidth', 5)
+xlim([-1 57])
+ylim([-2 10])
 drawnow, hold off;
 pause(0.5);
 end

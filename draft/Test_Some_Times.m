@@ -12,24 +12,22 @@ loop_step = 1;
 tt_result = [];
 tt_totalOfShuttle = [];
 for i=1:loop_step
-    run('final_setup_var.m');
+    run('testOneTime_var1.m');
     syncData();
     %Dispatching---------------------------------------------------------------------%
     %Setting-------------------------------------------------------------------------%
-    to_totalCase = 12;
-    from_case = 1;
-    t=1:to_totalCase;
-    result = zeros(1,to_totalCase);
-    totalOfShuttle = zeros(1,to_totalCase);
-    for numOfShuttle=from_case:to_totalCase
+    totalCase = 10;
+    t=1:totalCase;
+    result = zeros(1,totalCase);
+    totalOfShuttle = zeros(1,totalCase);
+    for numOfShuttle=1:totalCase
         step = 0;
         job = job_fix;
         shuttle_info = zeros(numOfShuttle,8);
-        station_list=[2 5 8 10 12 14 16 18 26 31 39 47 55 56 57 58 1];
         for num=1:numOfShuttle
             shuttle_info(num,1)=num;
             shuttle_info(num,2)=1;
-            shuttle_info(num,3)=station_list(num);
+            shuttle_info(num,3)=num;
             shuttle_info(num,4)=num;
         end
         syncData();
@@ -44,7 +42,7 @@ for i=1:loop_step
             for ctrol=1:numOfShuttle
                 controlOneShuttle(ctrol);
             end
-            ReRouting(); % Tranh di chuyen
+            ReRouting();
             step = step+1;
         end
         result(numOfShuttle)= step;
@@ -63,5 +61,4 @@ p(2).LineWidth = 2;
 legend('Total Time','Total distance')
 xlabel('Number of Shuttle');
 ylabel('Step');
-xlim([1 to_totalCase]);
 grid on;
