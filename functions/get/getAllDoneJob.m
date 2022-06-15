@@ -1,6 +1,6 @@
-function [done] = getDoneJob(job)
+function [done] = getAllDoneJob(job)
 for i=1:size(job,1)
-    if job(i,4) ~= 1
+    if ~checkJobDone(i)
         done = false;
         return
     end

@@ -1,6 +1,5 @@
 function [next] = getNextPos(shuttleID)
-global pathOfShuttle;
-path = pathOfShuttle{shuttleID};
+path = getPath(shuttleID);
 if path ~= 0
     step = 0;
     for step=1:size(path,2)
@@ -15,6 +14,8 @@ if path ~= 0
         next = path(1,end);
     end
 else
+    curPos = getCurrentPos(shuttleID);
+    next = curPos;
     %fprintf("path null\n");
 end
 end

@@ -1,5 +1,5 @@
 function moveToTarget(shuttleID)
-global shuttle_info pathOfShuttle;
+global shuttle_info;
 target = getTargetPos(shuttleID);
 current = getCurrentPos(shuttleID);
 if current == target

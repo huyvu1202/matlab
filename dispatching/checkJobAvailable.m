@@ -1,7 +1,7 @@
 function checkJobAvailable()
 global job;
 for i=1:size(job,1)
-    if job(i,4) == 0
+    if checkJobDone(i) == false
         callShullteToLoad(i);
     end
 end

@@ -1,6 +1,6 @@
 function setTargetForShuttle(shuttleID, target)
-global shuttle_info pathOfShuttle;
+global shuttle_info;
 shuttle_info(shuttleID,4) = target;
 [~, L] = pathToLoadStation(shuttleID,target);
-pathOfShuttle{shuttleID} = L;
+setPath(shuttleID, L);
 end
